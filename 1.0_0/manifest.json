@@ -1,0 +1,26 @@
+{
+   "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html",
+      "default_title": "马克收藏",
+      "name": "马克收藏"
+   },
+   "content_scripts": [ {
+      "js": [ "jquery-1.9.1.min.js", "content.js" ],
+      "matches": [ "http://*/*", "https://*/*" ]
+   } ],
+   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+   "description": "将网址快速收藏到马克网络收藏夹。",
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png",
+      "48": "icon48.png"
+   },
+   "key": "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDQ5dctTh2GQE0G",
+   "manifest_version": 2,
+   "name": "马克收藏",
+   "options_page": "options.html",
+   "permissions": [ "tabs", "activeTab", "webRequest", "webRequestBlocking", "browsingData", "webNavigation", "http://*/*", "https://*/*" ],
+   "version": "1.0",
+   "web_accessible_resources": [ "global.css" ]
+}

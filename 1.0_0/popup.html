@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<title>Popup Page</title>
+<style>
+body {
+	min-width: 110px;
+	overflow-x: hidden;
+}
+body {
+	font-family: "微软雅黑", Arial;
+	margin: 0;
+	padding: 0;
+}
+ol,ul{list-style:none}
+li{list-style-type:none}
+/*选中样式*/
+/*::selection {
+	background:#ffffff;
+	color:#2e2e2e;
+}
+
+::-moz-selection {
+	background:#ffffff;
+	color:#2e2e2e;
+}
+
+::-webkit-selection {
+	background:#ffffff;
+	color:#2e2e2e;
+}*/
+.clearfix:after {
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+.inputs{
+	width: 18em;
+	border:1px solid #CCCCCC;
+	border-radius: 6px;
+	padding: .62em .8em;
+	box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.2);
+	font-family: "微软雅黑", Arial;
+}
+
+.light-buttons {
+	width: 40%;
+	padding-right: 10%;
+	float: left;
+}
+.dark-buttons {
+	width: 40%;
+	padding-left: 10%;
+	float: left;
+}
+.marginauto{ margin: 0px auto;}
+/*****Buttons*****/
+.button {
+	width: 7.5em;
+	display: block;
+	border-radius: 6px;
+	padding: .48em .8em;
+	text-shadow: rgba(0,0,0,.5) 0px -1px 0px;
+	font-size: 18px;
+	font-weight: 700;
+	transition-property: background-color;
+	transition-duration: .15s;
+	transition-timing-function: ease-in-out;
+	cursor: pointer;
+	text-decoration: none;
+	margin-bottom: 20px;
+}
+.button:active {
+	margin-top: 22px;
+	margin-bottom: 15px;
+}
+.button span {
+	vertical-align: middle;
+}
+.icon {
+	width: 26px;
+	height: 26px;
+	border-radius: 13px;
+	background: rgba(0,0,0,.3);
+	float: right;
+	box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2) inset, 0px 0px 0px 1px rgba(255,255,255,.2);
+}
+.arrow {
+	margin: 7px 0px 0 8px;
+	-webkit-border-style: solid;
+	-moz-border-style: solid;
+	-ie-border-style: solid;
+	border-style: solid;
+	border-width:6px 6px 6px 12px;
+	width: 0;
+	height: 0;
+}
+/********Light Background Colors********/
+/*Pink*/
+.lightbg-pink {
+	background-color: #cc3747;
+	color: #ffdada;
+	box-shadow: 0px 0px 0px 1px #8d1b27 inset, 0px 0px 0px 2px #dd4356 inset, 0px 4px 0px 0px #8d1b27, 0px 5px 0px 0px #65141c, 0px 8px 0px 0px rgba(0,0,0,.15);
+}
+.lightbg-pink:hover {
+	background-color: #dd3c4d;
+}
+.lightbg-pink:active {
+	background-color: #bb3241;
+	box-shadow: 0px 0px 0px 1px #8d1b27 inset, 0px 0px 0px 2px #dd4356 inset, 0px 1px 0px 0px #8d1b27, 0px 3px 0px 0px rgba(0,0,0,.15);
+}
+.lightbg-pink .arrow {
+	border-color: transparent transparent transparent #dd4356;
+}
+.formpanel{ max-width: 420px; min-width: 420px; margin: 0px auto; position: relative;}
+/*头部微信*/
+.top_tips{ width:100%; height:50px; position:fixed; top:0; left:0; font-family:"微软雅黑"; z-index:99999;}
+.top_tips a{ width:100%; height:100%; display:block; color:#fff;}
+.top_tips_bg{ width:100%; height:50px; background:#F01D1D; opacity:0.8;}
+.top_tips_dh{ width:100%; height:50px; position:absolute; left:0; top:0;}
+.top_tips_dh h3{ font-size:16px; margin-top:15px; line-height:16px; text-align: center; font-weight:normal; color:#fff;}
+
+.formpanel ul li{margin-top: 12px;}
+.formpanel ul li.actbtn{ margin-top: 18px; position: relative;}
+.formpanel ul li.actbtn #qscollect{margin-left: 24%;}
+.formpanel ul li span.labels{ display: block; display:inline; display:inline-block; width: 55px; text-align: right;}
+.formpanel ul li.actbtn .maglink{ position: absolute; right: 76px; top: 14px; font-size: 14px;}
+
+</style>
+<!--
+- JavaScript and HTML must be in separate files: see our Content Security
+- Policy documentation[1] for details and explanation.
+-
+- [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
+-->
+<script src="jquery-1.9.1.min.js"></script>
+<script src="popup.js"></script>
+<body>
+	<!--趣尚收藏扩展-->
+	<div class="formpanel">
+		<div class="top_tips" style="display: none;">
+			<div class="top_tips_bg"></div>
+			<div class="top_tips_dh"><h3></h3></div>
+		</div>
+		<div style="height: 10px;"></div>
+		<form name="form_favurl" id="form_favurl" action="http://mark.uxwin.com/api.php?op=favurls" method="post">
+			<ul>
+				<li><span class="labels">网址：</span><input name="purl" class="inputs" id="purl" type="text" value="" /></li>
+				<li><span class="labels">标题：</span><input name="ptitle" class="inputs" id="ptitle" type="text" value="" /></li>
+				<li><span class="labels">描述：</span><textarea name="psim" class="inputs" id="psim" rows="6"></textarea></li>
+				<li><span class="labels">关键词：</span><input name="pkeys" class="inputs" id="pkeys" type="text" value="" /></li>
+				
+				
+				<li class="actbtn">
+					<input name="token" id="token" type="hidden" value="1C43095BED239C8095E279D0CF71FDDE" />
+					<input name="gurl" id="gurl" type="hidden" value="" />
+					<input name="gtitle" id="gtitle" type="hidden" value="" />
+					<input name="gsim" id="gsim" type="hidden" value="" />
+					<input name="gkeys" id="gkeys" type="hidden" value="" />
+					<input name="param" id="param" type="hidden" value="iplay" />
+					<a href="javascript:;" class="button lightbg-pink clearfix" id="qscollect"><span>马克收藏</span>
+						<div class="icon">
+							<div class="arrow"></div>
+						</div>
+					</a>
+					<a class="maglink" href="http://mark.uxwin.com/" target="_blank">管理</a>
+				</li>
+			</ul>
+		</form>
+		<div style="height: 10px;"></div>
+	</div>
+</body>
+</html>
